@@ -14,10 +14,12 @@
  
   <tbody>
     <tr *ngFor="let product of prod_Data">
-      <td>{{ product.productName }}</td>
+      <td (click)="handle_details(product)">{{ product.productName }}</td>
       <td>{{ product.price }}</td>
       <td>{{ product.category }}</td>
     </tr>
   </tbody>
 </table>
+
+<router-outlet></router-outlet>
 

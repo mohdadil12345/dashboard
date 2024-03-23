@@ -1,26 +1,24 @@
 import { Component } from '@angular/core';
 import { ProdType } from './prod-type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-
   prod_Data: ProdType[] = [];
 
   prd_name: string = '';
-  
+
   asc: boolean = true;
 
-
-  constructor() {
-    this.prod_Data = this.products; 
+  constructor(private router: Router) {
+    this.prod_Data = this.products;
   }
 
-
-   products:  ProdType[] =  [
+  products: ProdType[] = [
     { id: 1, productName: 'Laptop', price: 1200, category: 'Electronics' },
     { id: 2, productName: 'Smartphone', price: 800, category: 'Electronics' },
     { id: 3, productName: 'Headphones', price: 150, category: 'Electronics' },
@@ -31,7 +29,6 @@ export class AppComponent {
     { id: 8, productName: 'Smartphone', price: 800, category: 'Electronics' },
   ];
 
-
   // sorting
 
   sort_price() {
@@ -41,14 +38,19 @@ export class AppComponent {
     });
   }
 
-
   // filter
-  
+
   filBy_name() {
-    this.prod_Data = this.products.filter(ele =>
+    this.prod_Data = this.products.filter((ele) =>
       ele.productName.toLowerCase().includes(this.prd_name.toLowerCase())
     );
   }
-  
 
+  // details
+
+  handle_details(prod: any) {
+    this.router.navigate(['/details']);
+
+    localStorage.setItem('prod_details', JSON.stringify(prod));
+  }
 }
