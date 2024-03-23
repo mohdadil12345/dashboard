@@ -1,16 +1,23 @@
+
+<label for="">Filter Products :- </label>
+<input type="text" [(ngModel)]="prd_name" (input)="filBy_name()" placeholder="Search by product name">
+
+
 <table>
   <thead>
     <tr>
       <th>Product Name</th>
-      <th>Price</th>
+      <th (click)="sort_price()">Price</th>
       <th>Category</th>
     </tr>
   </thead>
+ 
   <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of prod_Data">
       <td>{{ product.productName }}</td>
       <td>{{ product.price }}</td>
       <td>{{ product.category }}</td>
     </tr>
   </tbody>
 </table>
+
